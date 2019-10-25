@@ -8,7 +8,7 @@ chrome.runtime.onInstalled.addListener(function () {
     });
 });
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
-    const text = info.selectionText.replace(/\s{2,}/g, ' ').replace('’','\'');
+    const text = info.selectionText.replace(/\s{2,}/g, ' ').replace('’', '\'');
     const api = 'http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=vi&dt=t&q=' + text + '&ie=UTF-8&oe=UTF-8';
     const http = new XMLHttpRequest();
     http.open('GET', api, true);
@@ -22,17 +22,23 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
         }
     }
 });
+const a = 400;
+const b = 370;
 
 function showWindow(text) {
     chrome.storage.sync.set({text: text}, function () {
-             chrome.windows.create({
-            url: chrome.runtime.getURL("mypage.html"),
-            type: "popup",
-            width: 400,
-            height: 370,
-            left: 0,
-            top: 0,
-            focused: true
+        chrome.windows.getCurrent(function (window) {
+            console.log(window)
+            console.log();
+            chrome.windows.create({
+                url: chrome.runtime.getURL("mypage.html"),
+                type: "popup",
+                width: a,
+                height: b,
+                left: window.left + Math.round((window.width - a) / 2),
+                top: window.top + Math.round((window.height - b) / 2),
+                focused: true
+            });
         });
     });
 }
