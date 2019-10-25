@@ -28,8 +28,6 @@ const b = 370;
 function showWindow(text) {
     chrome.storage.sync.set({text: text}, function () {
         chrome.windows.getCurrent(function (window) {
-            console.log(window)
-            console.log();
             chrome.windows.create({
                 url: chrome.runtime.getURL("mypage.html"),
                 type: "popup",
