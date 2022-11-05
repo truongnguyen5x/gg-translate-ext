@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Google dịch</title>
     <script src="popup.js"></script>
-</head>
-<body>
-<ul id="list">
-    <li id="content" style="font-size: 17px;margin-bottom: 15px"></li>
-</ul>
-</body>
+    <style>
+      #content {
+        width: 100%;
+        border: 1px solid #0000003d;
+        border-collapse: collapse;
+      }
+      #content tr:nth-child(even) {
+        background-color: #3525b42b;
+      }
+      body {
+        margin: 0
+      }
+      #content td {
+        border: 1px solid #0000003d;
+        font-size: 20px;
+        padding: 5px
+      }
+    </style>
+  </head>
+  <body>
+    <table id="content">
+    </table>
+  </body>
 </html>

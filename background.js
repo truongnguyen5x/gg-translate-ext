@@ -8,7 +8,9 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 });
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
-  const text = info.selectionText.replace(/\s{2,}/g, " ").replace("’", "'");
+  let text = info.selectionText.replace(/\s{2,}/g, " ")
+  //.replace("’", "'");
+  text = encodeURIComponent(text);
   fetch(
     "http://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=vi&dt=t&q=" +
       text +
@@ -16,11 +18,11 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
   )
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       showWindow(data[0]);
-      console.log(data[0]);
     });
 });
-const a = 400;
+const a = 800;
 const b = 370;
 
 function showWindow(text) {
