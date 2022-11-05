@@ -31,8 +31,10 @@ function showWindow(text) {
         type: "popup",
         width: a,
         height: b,
-        left: window.left + Math.round((window.width - a) / 2),
-        top: window.top + Math.round((window.height - b) / 2),
+        left: window.left + Math.round((window.width - a)),
+        // left: window.left + Math.round((window.width - a)/2),
+        // top: window.top + Math.round((window.height - b)),
+        top: window.top,
         focused: true,
       });
     });
