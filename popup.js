@@ -8,9 +8,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     for (let i = 0; i < result.text.length; i++) {
       let tr = document.createElement("tr");
       let td1 = document.createElement("td");
-      td1.innerText = result.text[i][1];
+      td1.setAttribute("width", "50%");
+      td1.innerText = result.text[i][1].trim().replace(/^,+|,+$/g, "");
       let td2 = document.createElement("td");
-      td2.innerText = result.text[i][0];
+      td2.innerText = result.text[i][0].trim().replace(/^,+|,+$/g, "");
       tr.appendChild(td1);
       tr.appendChild(td2);
       list.appendChild(tr);
